@@ -35,6 +35,7 @@
             font-family: 'Poppins', sans-serif;
             overflow-x: hidden;
             color: var(--light);
+            background: #000;
         }
 
         section {
@@ -44,12 +45,16 @@
             position: relative;
             overflow: hidden;
             padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
+            width: 100%;
         }
 
         h1, h2, h3 {
@@ -98,9 +103,6 @@
         /* Hero Section */
         #hero {
             background: linear-gradient(135deg, #000428, #004e92);
-            display: flex;
-            align-items: center;
-            justify-content: center;
             text-align: center;
             position: relative;
         }
@@ -121,10 +123,15 @@
         .hero-content {
             position: relative;
             z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
         }
 
         .hero-content h1 {
-            font-size: 4rem;
+            font-size: clamp(2.5rem, 8vw, 4rem);
             margin-bottom: 1rem;
             background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
             -webkit-background-clip: text;
@@ -134,9 +141,10 @@
         }
 
         .hero-content p {
-            font-size: 1.5rem;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
             margin-bottom: 2rem;
             color: rgba(255, 255, 255, 0.8);
+            max-width: 800px;
         }
 
         .typewriter {
@@ -151,6 +159,13 @@
         @keyframes blink {
             from, to { border-color: transparent }
             50% { border-color: var(--neon-blue); }
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
         }
 
         .particles {
@@ -183,20 +198,24 @@
         .about-container {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center;
             gap: 3rem;
             height: 100%;
+            width: 100%;
         }
 
         .about-img {
             flex: 1;
             display: flex;
             justify-content: center;
+            min-width: 250px;
         }
 
         .profile-img {
-            width: 350px;
-            height: 350px;
+            width: 100%;
+            max-width: 350px;
+            height: auto;
+            aspect-ratio: 1/1;
             border-radius: 50%;
             object-fit: cover;
             border: 5px solid var(--primary);
@@ -212,17 +231,20 @@
 
         .about-text {
             flex: 1;
+            min-width: 300px;
         }
 
         .about-text h2 {
-            font-size: 2.5rem;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
             margin-bottom: 1.5rem;
             color: var(--dark);
+            text-align: center;
         }
 
         .about-text p {
             margin-bottom: 1rem;
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 1.2vw, 1.1rem);
+            text-align: justify;
         }
 
         .quote {
@@ -231,6 +253,7 @@
             border-left: 3px solid var(--primary);
             background: rgba(6, 214, 160, 0.1);
             margin: 1.5rem 0;
+            text-align: center;
         }
 
         /* Skills Section */
@@ -241,13 +264,14 @@
         .section-title {
             text-align: center;
             margin-bottom: 3rem;
-            font-size: 2.5rem;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
         }
 
         .skills-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
+            justify-items: center;
         }
 
         .skill-category {
@@ -256,6 +280,8 @@
             border-radius: 15px;
             padding: 2rem;
             transition: transform 0.3s ease;
+            width: 100%;
+            max-width: 400px;
         }
 
         .skill-category:hover {
@@ -311,6 +337,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
+            justify-items: center;
         }
 
         .project-card {
@@ -319,6 +346,10 @@
             overflow: hidden;
             transition: all 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
         }
 
         .project-card:hover {
@@ -335,22 +366,30 @@
 
         .project-info {
             padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .project-info h3 {
             font-size: 1.3rem;
             margin-bottom: 0.5rem;
             color: var(--primary);
+            text-align: center;
         }
 
         .project-info p {
             margin-bottom: 1rem;
             color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+            flex: 1;
         }
 
         .project-links {
             display: flex;
             gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
         .project-link {
@@ -362,6 +401,7 @@
             text-decoration: none;
             font-size: 0.9rem;
             transition: all 0.3s ease;
+            text-align: center;
         }
 
         .project-link:hover {
@@ -373,9 +413,6 @@
         #contact {
             background: rgba(8, 8, 32, 0.8);
             backdrop-filter: blur(10px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
         .contact-container {
@@ -383,14 +420,19 @@
             gap: 3rem;
             width: 100%;
             max-width: 1000px;
+            margin: 0 auto;
         }
 
         .contact-info {
             flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
 
         .contact-info h2 {
-            font-size: 2.5rem;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
             margin-bottom: 1.5rem;
             color: var(--primary);
         }
@@ -398,12 +440,15 @@
         .contact-info p {
             margin-bottom: 2rem;
             color: rgba(255, 255, 255, 0.8);
+            text-align: center;
         }
 
         .social-links {
             display: flex;
             gap: 1rem;
             margin-top: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .social-link {
@@ -432,6 +477,8 @@
             padding: 2rem;
             border-radius: 15px;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 500px;
+            width: 100%;
         }
 
         .form-group {
@@ -499,6 +546,7 @@
             justify-content: center;
             gap: 1.5rem;
             margin: 1.5rem 0;
+            flex-wrap: wrap;
         }
 
         .footer-link {
@@ -530,44 +578,56 @@
 
             .contact-container {
                 flex-direction: column;
+                align-items: center;
             }
 
-            .hero-content h1 {
-                font-size: 3rem;
+            .about-text p {
+                text-align: center;
+            }
+
+            .profile-img {
+                max-width: 300px;
             }
         }
 
         @media (max-width: 768px) {
             section {
-                padding: 1rem;
+                padding: 1.5rem;
             }
 
             .hero-content h1 {
-                font-size: 2.5rem;
+                font-size: clamp(2rem, 8vw, 3rem);
             }
 
             .hero-content p {
-                font-size: 1.2rem;
+                font-size: clamp(1rem, 3vw, 1.2rem);
             }
 
             .profile-img {
-                width: 250px;
-                height: 250px;
+                max-width: 250px;
             }
 
             .section-title {
-                font-size: 2rem;
+                font-size: clamp(1.5rem, 6vw, 2rem);
+            }
+
+            .skill-category, .project-card {
+                max-width: 350px;
             }
         }
 
         @media (max-width: 576px) {
+            section {
+                padding: 1rem;
+            }
+
             .btn {
                 padding: 0.6rem 1.2rem;
                 font-size: 0.9rem;
             }
 
             .hero-content h1 {
-                font-size: 2rem;
+                font-size: clamp(1.8rem, 8vw, 2.5rem);
             }
 
             .project-links {
@@ -578,6 +638,26 @@
             .project-link {
                 width: 100%;
                 text-align: center;
+            }
+
+            .contact-form {
+                padding: 1.5rem;
+            }
+
+            .skill-category, .project-card {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 250px;
             }
         }
     </style>
@@ -592,10 +672,9 @@
                 <span class="typewriter-text">AI Engineering Student | C++ Developer | Future Innovator</span>
             </p>
             <div class="hero-buttons">
-    <a href="https://github.com/UMAIR7592" class="btn btn-primary" target="_blank" rel="noopener noreferrer">View Projects</a>
-    <a href="MY RESUME2222.pdf"class="btn btn-secondary" download>MY Resume</a>
-</div>
-
+                <a href="https://github.com/UMAIR7592" class="btn btn-primary" target="_blank" rel="noopener noreferrer">View Projects</a>
+                <a href="MY RESUME2222.pdf" class="btn btn-secondary" download>My Resume</a>
+            </div>
         </div>
     </section>
 
@@ -607,9 +686,9 @@
             </div>
             <div class="about-text" data-aos="fade-left" data-aos-duration="1000">
                 <h2>The Journey</h2>   
-                <p>With 1050/1100  marks in Matric, I chose Pre-Medical in F.Sc, and Looking back, I realize it may not have been the best choice for my career goals.After securing 449/555 marks in my first year of FSc (Pre-Medical), I decided to appear in the improvement examinations and work harder in second year, aiming to take a gap year and prepare for MDCAT. However, despite my dedication, I scored 972/1200 due to low marks in practicals and other unforeseen setbacks. Failing to score even 1000 marks made me rethink my path. As a result, I ultimately decided to leave the medical field and pursue a future in Artificial Intelligence. I got admitted to UET Lahore, where I am now exploring my passion for AI and technology. Looking back, I believe I made the right decision by stepping away from the medical field — one that truly aligns with my interests and potential.</p>
-<div class="quote">
-    "Sometimes walking away from a familiar path is the first step toward discovering your true calling."
+                <p>With 1050/1100 marks in Matric, I chose Pre-Medical in F.Sc, and Looking back, I realize it may not have been the best choice for my career goals. After securing 449/555 marks in my first year of FSc (Pre-Medical), I decided to appear in the improvement examinations and work harder in second year, aiming to take a gap year and prepare for MDCAT. However, despite my dedication, I scored 972/1200 due to low marks in practicals and other unforeseen setbacks. Failing to score even 1000 marks made me rethink my path. As a result, I ultimately decided to leave the medical field and pursue a future in Artificial Intelligence. I got admitted to UET Lahore, where I am now exploring my passion for AI and technology. Looking back, I believe I made the right decision by stepping away from the medical field — one that truly aligns with my interests and potential.</p>
+                <div class="quote">
+                    "Sometimes walking away from a familiar path is the first step toward discovering your true calling."
                 </div>
             </div>
         </div>
@@ -668,7 +747,7 @@
                     <h3>Tools & Technologies</h3>
                     <div class="skill-item">
                         <div class="skill-info">
-                            <span class="skill-name">Git</span>
+                            <span class="skill-name">Javascript</span>
                             <span class="skill-percent">85%</span>
                         </div>
                         <div class="skill-bar">
@@ -677,7 +756,7 @@
                     </div>
                     <div class="skill-item">
                         <div class="skill-info">
-                            <span class="skill-name">Linux</span>
+                            <span class="skill-name">My Sql</span>
                             <span class="skill-percent">80%</span>
                         </div>
                         <div class="skill-bar">
@@ -686,7 +765,7 @@
                     </div>
                     <div class="skill-item">
                         <div class="skill-info">
-                            <span class="skill-name">OpenCV</span>
+                            <span class="skill-name">PHP</span>
                             <span class="skill-percent">70%</span>
                         </div>
                         <div class="skill-bar">
@@ -704,11 +783,10 @@
             <h2 class="section-title" data-aos="fade-down">Creations of Logic</h2>
             <div class="projects-container">
                 <div class="project-card" data-aos="zoom-in" data-aos-delay="100">
-                    <a href="https://imgbb.com/"><img src="https://i.ibb.co/MDcp085T/yu.png" alt="yu"></a>
+                    <a href="https://imgbb.com/"><img src="https://i.ibb.co/MDcp085T/yu.png" alt="yu" class="project-img"></a>
                     <div class="project-info">
                         <h3>Tic Tac Toe - 3 Player CLI Game</h3>
-                        <p>Tic Tac Toe – 3-Player Edition is an interactive 4x4 command-line application designed to accommodate three participants (X, O, and Y), each competing to establish four consecutive symbols across rows, columns, or diagonals. The game incorporates dynamic turn-based mechanics, vibrant terminal aesthetics, and robust victory/draw evaluation logic.
-It offers a refined take on the classic game, serving as an ideal exercise in multidimensional arrays, control flow, and algorithmic thinking in C++.</p>
+                        <p>Tic Tac Toe – 3-Player Edition is an interactive 4x4 command-line application designed to accommodate three participants (X, O, and Y), each competing to establish four consecutive symbols across rows, columns, or diagonals. The game incorporates dynamic turn-based mechanics, vibrant terminal aesthetics, and robust victory/draw evaluation logic. It offers a refined take on the classic game, serving as an ideal exercise in multidimensional arrays, control flow, and algorithmic thinking in C++.</p>
                         <div class="project-links">
                             <a href="https://github.com/UMAIR7592/Tic-Tac-Toe-Game-3-players#" class="project-link"><i class="fab fa-github"></i> GitHub</a>
                             <a href="https://github.com/UMAIR7592/Tic-Tac-Toe-Game-3-players#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
@@ -729,13 +807,10 @@ It offers a refined take on the classic game, serving as an ideal exercise in mu
                 </div>
                 
                 <div class="project-card" data-aos="zoom-in" data-aos-delay="300">
-                    <a href="https://imgbb.com/"><img src="https://i.ibb.co/M596xh0x/key.jpg" alt="key"></a>
+                    <a href="https://imgbb.com/"><img src="https://i.ibb.co/M596xh0x/key.jpg" alt="key" class="project-img"></a>
                     <div class="project-info">
                         <h3>VEHICHLE-RENTAL-SYSTEM</h3>
-                        <p>A structured and interactive C++ console application simulating real-world vehicle rentals with type-wise pricing, damage penalties, and emoji-enhanced UI.
-📌 Designed with modular code architecture and color-coded visuals to enhance usability and real-world logic simulation.
-</p>
-                    
+                        <p>A structured and interactive C++ console application simulating real-world vehicle rentals with type-wise pricing, damage penalties, and emoji-enhanced UI. 📌 Designed with modular code architecture and color-coded visuals to enhance usability and real-world logic simulation.</p>
                         <div class="project-links">
                             <a href="https://github.com/UMAIR7592/Vehichle-Rental-System.git" class="project-link"><i class="fab fa-github"></i> GitHub</a>
                             <a href="https://github.com/UMAIR7592/Vehichle-Rental-System.git" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
@@ -754,20 +829,18 @@ It offers a refined take on the classic game, serving as an ideal exercise in mu
                 <p>Have a project in mind or want to discuss potential opportunities? Feel free to reach out! I'm always open to collaborating on interesting projects or just having a chat about technology.</p>
                 <div class="social-links">
                     <a href="mailto:ui9090er@gmail.com" class="social-link" title="Email">
-  <i class="fas fa-envelope"></i> 
-</a>
+                        <i class="fas fa-envelope"></i> 
+                    </a>
                     <a href="https://www.linkedin.com/in/muhammad-umair-imran-4246b8359" class="social-link" title="LinkedIn" target="_blank" rel="noopener noreferrer">
-  <i class="fab fa-linkedin-in"></i>
-</a>
-
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
                     <a href="https://www.youtube.com/@BEAUTYOFISLAM-y6t" class="social-link" title="YouTube" target="_blank" rel="noopener noreferrer">
-  <i class="fab fa-youtube"></i>
-</a>
-
+                        <i class="fab fa-youtube"></i>
+                    </a>
                     <a href="https://github.com/UMAIR7592" class="social-link" title="GitHub" target="_blank" rel="noopener noreferrer">
-  <i class="fab fa-github"></i>
-</a>
-              </div>
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
             </div>
             <div class="contact-form" data-aos="fade-left" data-aos-duration="1000">
                 <form id="contactForm">
@@ -799,7 +872,7 @@ It offers a refined take on the classic game, serving as an ideal exercise in mu
                 <a href="#projects" class="footer-link"><i class="fas fa-project-diagram"></i></a>
                 <a href="#contact" class="footer-link"><i class="fas fa-envelope"></i></a>
             </div>
-            <p class="copyright"> © Muhammad Umair • UET Lahore • 2025|Designed with <span class="crafted"> ❤️ & 🎯</span></p>
+            <p class="copyright"> © Muhammad Umair • UET Lahore • 2025 | Designed with <span class="crafted"> ❤️ & 🎯</span></p>
         </div>
     </footer>
 
