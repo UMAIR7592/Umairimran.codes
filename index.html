@@ -1232,22 +1232,204 @@
             animation: pulse 1.5s infinite;
         }
 
-        /* Mobile Navigation */
+        /* Navigation Bar */
+        .navbar {
+            position: fixed;
+            top: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(15, 15, 25, 0.8);
+            backdrop-filter: blur(20px) saturate(200%);
+            -webkit-backdrop-filter: blur(20px) saturate(200%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 50px;
+            padding: 0.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            width: auto;
+            max-width: 90%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2),
+                        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform, opacity, box-shadow;
+            overflow: hidden;
+        }
+        
+        .navbar::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, 
+                rgba(0, 245, 255, 0.1) 0%, 
+                rgba(0, 180, 255, 0.08) 50%,
+                rgba(0, 80, 200, 0.1) 100%);
+            z-index: -1;
+            opacity: 0.7;
+            transition: opacity 0.5s ease;
+        }
+        
+        .navbar:hover::before {
+            opacity: 1;
+        }
+        
+        .navbar.scrolled {
+            top: 0.5rem;
+            padding: 0.6rem 1.5rem;
+            border-radius: 12px;
+            background: rgba(10, 10, 15, 0.9);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 0.5rem;
+            list-style: none;
+            margin: 0;
+            padding: 0.25rem;
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-links::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(0, 245, 255, 0.3), 
+                transparent);
+            opacity: 0.5;
+        }
+        
+        .nav-link {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            padding: 0.7rem 1.8rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            white-space: nowrap;
+        }
+        
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, 
+                rgba(0, 245, 255, 0.15) 0%, 
+                rgba(0, 200, 255, 0.1) 100%);
+            z-index: -1;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0, 245, 255, 0.1),
+                        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+        }
+        
+        .nav-link:hover {
+            color: #fff;
+            transform: translateY(-2px);
+            text-shadow: 0 0 10px rgba(0, 245, 255, 0.5);
+        }
+        
+        .nav-link:hover::before {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .nav-link.active {
+            color: #fff;
+            font-weight: 600;
+            text-shadow: 0 0 15px rgba(0, 245, 255, 0.7);
+            transform: translateY(-2px);
+        }
+        
+        .nav-link.active::before {
+            opacity: 1;
+            transform: scale(1);
+            background: linear-gradient(135deg, 
+                rgba(0, 245, 255, 0.25) 0%, 
+                rgba(0, 180, 255, 0.2) 100%);
+            box-shadow: 0 5px 25px rgba(0, 245, 255, 0.25),
+                        inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Add a subtle glow effect to active link */
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 30%;
+            height: 2px;
+            background: var(--primary);
+            border-radius: 2px;
+            box-shadow: 0 0 15px var(--primary);
+            animation: pulse-glow 2s infinite;
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+        
+        /* Mobile Menu Button */
         .mobile-menu-btn {
             display: none;
-            background: none;
-            border: none;
-            color: var(--light);
-            font-size: 1.5rem;
+            background: linear-gradient(135deg, 
+                rgba(0, 245, 255, 0.1) 0%, 
+                rgba(0, 200, 255, 0.05) 100%);
+            border: 1px solid rgba(0, 245, 255, 0.15);
+            border-radius: 12px;
+            color: var(--primary);
+            font-size: 1.4rem;
             cursor: pointer;
+            padding: 0.7rem 1.2rem;
             z-index: 1001;
-            padding: 0.5rem;
-            border-radius: 4px;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
-
+        
+        .mobile-menu-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 245, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        
         .mobile-menu-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(0, 245, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 245, 255, 0.15);
+        }
+        
+        .mobile-menu-btn:hover::before {
+            left: 100%;
         }
 
         .mobile-nav {
@@ -1256,41 +1438,102 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
+            height: 100vh;
             background: rgba(10, 10, 15, 0.98);
+            backdrop-filter: blur(10px);
             z-index: 1000;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             padding: 2rem;
+            overflow-y: auto;
         }
 
         .mobile-nav.active {
             display: flex;
             opacity: 1;
+            animation: fadeIn 0.4s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .mobile-nav a {
             color: var(--light);
-            font-size: 1.5rem;
-            margin: 1rem 0;
+            font-size: 1.25rem;
+            margin: 0.5rem 0;
             text-decoration: none;
+            padding: 1rem 2rem;
+            border-radius: 30px;
             transition: all 0.3s ease;
             text-align: center;
-            padding: 0.8rem 2rem;
-            border-radius: 30px;
             width: 100%;
-            max-width: 300px;
+            max-width: 280px;
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .mobile-nav a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 245, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .mobile-nav a:hover::before {
+            left: 100%;
         }
 
-        .mobile-nav a:hover, .mobile-nav a.active {
+        .mobile-nav a:hover, 
+        .mobile-nav a.active {
             color: var(--primary);
-            background: rgba(0, 245, 255, 0.1);
-            transform: translateY(-2px);
+            background: rgba(0, 245, 255, 0.15);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 245, 255, 0.15);
+            border-color: var(--primary);
+        }
+        
+        .mobile-nav a:active {
+            transform: translateY(-1px);
+        }
+        
+        .close-menu-btn {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            font-size: 1.25rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1002;
+        }
+        
+        .close-menu-btn:hover {
+            background: rgba(255, 0, 85, 0.2);
+            color: #ff0055;
+            transform: rotate(90deg);
+            border-color: #ff0055;
         }
 
         .close-menu-btn {
@@ -1336,8 +1579,28 @@
 
         @media (max-width: 992px) {
             .navbar {
-                padding: 1rem 2rem;
-                top: 1.5rem;
+                padding: 0.8rem 1.5rem;
+                top: 1rem;
+                left: 50%;
+                transform: translateX(-50%);
+                width: auto;
+                min-width: 300px;
+                justify-content: space-between;
+            }
+            
+            .nav-links {
+                display: none; /* Hide desktop nav on mobile */
+            }
+            
+            .mobile-menu-btn {
+                display: flex; /* Show mobile menu button */
+                align-items: center;
+                justify-content: center;
+            }
+            
+            /* Adjust hero section padding to account for fixed navbar */
+            #hero {
+                padding-top: 80px;
             }
 
             .nav-links {
@@ -1504,9 +1767,34 @@
 
         @media (max-width: 576px) {
             .navbar {
-                padding: 0.6rem 1rem;
+                padding: 0.5rem 1rem;
                 top: 0.5rem;
-                border-radius: 30px;
+                border-radius: 25px;
+                min-width: 260px;
+            }
+            
+            .mobile-menu-btn {
+                font-size: 1.2rem;
+                padding: 0.4rem 0.8rem;
+            }
+            
+            .close-menu-btn {
+                top: 1rem;
+                right: 1rem;
+                width: 36px;
+                height: 36px;
+                font-size: 1.1rem;
+            }
+            
+            .mobile-nav a {
+                font-size: 1rem;
+                padding: 0.8rem 1.2rem;
+                max-width: 240px;
+            }
+            
+            /* Adjust section padding for mobile */
+            section {
+                padding: 3rem 1rem;
             }
 
             .nav-links {
@@ -1565,9 +1853,33 @@
     </style>
 </head>
 <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="nav-links">
+            <a href="#hero" class="nav-link active">Home</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#timeline" class="nav-link">Journey</a>
+            <a href="#skills" class="nav-link">Skills</a>
+            <a href="#projects" class="nav-link">Projects</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </div>
+    </nav>
 
-
-
+    <!-- Mobile Navigation Menu -->
+    <div class="mobile-nav" id="mobileNav">
+        <button class="close-menu-btn" id="closeMenuBtn" aria-label="Close menu">
+            <i class="fas fa-times"></i>
+        </button>
+        <a href="#hero" class="mobile-nav-link active" onclick="closeMobileMenu()">Home</a>
+        <a href="#about" class="mobile-nav-link" onclick="closeMobileMenu()">About</a>
+        <a href="#timeline" class="mobile-nav-link" onclick="closeMobileMenu()">Journey</a>
+        <a href="#skills" class="mobile-nav-link" onclick="closeMobileMenu()">Skills</a>
+        <a href="#projects" class="mobile-nav-link" onclick="closeMobileMenu()">Projects</a>
+        <a href="#contact" class="mobile-nav-link" onclick="closeMobileMenu()">Contact</a>
+    </div>
 
     <!-- Hero Section -->
     <section id="hero">
@@ -2383,6 +2695,41 @@ It offers a refined take on the classic game, serving as an ideal exercise in mu
             updateActiveLink();
         }
 
+        // Close mobile menu function (in global scope)
+        function closeMobileMenu() {
+            const mobileNav = document.getElementById('mobileNav');
+            if (mobileNav) {
+                mobileNav.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Navbar scroll effect
+        const navbar = document.querySelector('.navbar');
+        let lastScroll = 0;
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll <= 0) {
+                navbar.classList.remove('scrolled');
+                return;
+            }
+            
+            if (currentScroll > lastScroll && currentScroll > 100) {
+                // Scrolling down
+                navbar.style.transform = 'translate(-50%, -100%)';
+                navbar.style.opacity = '0';
+            } else {
+                // Scrolling up
+                navbar.style.transform = 'translate(-50%, 0)';
+                navbar.style.opacity = '1';
+                navbar.classList.add('scrolled');
+            }
+            
+            lastScroll = currentScroll;
+        });
+        
         // Initialize everything when DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
             // Load theme first
@@ -2391,11 +2738,7 @@ It offers a refined take on the classic game, serving as an ideal exercise in mu
             // Initialize mobile menu
             initMobileMenu();
             
-            // Add floating keyframes to document
-            const style = document.createElement('style');
-            style.textContent = floatingKeyframes;
-            document.head.appendChild(style);
-            
+            // Initialize other components
             createEnhancedParticles();
             enhancedTypeWriter();
             initNavigation();
@@ -2425,7 +2768,10 @@ It offers a refined take on the classic game, serving as an ideal exercise in mu
                 });
             }, { threshold: 0.1 });
             
-            skillsObserver.observe(document.getElementById('skills'));
+            const skillsSection = document.getElementById('skills');
+            if (skillsSection) {
+                skillsObserver.observe(skillsSection);
+            }
             
             // Add loading animation
             document.body.style.opacity = '0';
